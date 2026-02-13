@@ -27,7 +27,11 @@ export default function LoginForm() {
     ShowToast(res.data?.message || "Login successful", {
       type: "success",
       onClose: () => {
-        navigate("/Dashboard/Vendor"); // redirect to homepage or dashboard
+        if (res.data?.updateUser.role === "vendor") {
+          navigate("/Dashboard/Vendor"); // redirect to vendor dashboard
+        }else{
+          navigate("/Dashboard/user")
+        }
       },
     });
   };

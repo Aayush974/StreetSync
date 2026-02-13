@@ -1,6 +1,7 @@
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom"
 import {ToastContainer} from "react-toastify"
 import { Home, Login, Signup, VendorDashboard } from "./pages"
+import UserDashboard from "./pages/UserDashboard"
 
 
 const router = createBrowserRouter(
@@ -10,6 +11,7 @@ const router = createBrowserRouter(
          <Route path = "/Signup" element={<Signup/>}/>
          <Route path = "/Login" element = {<Login/>}/>
          <Route path = "/Dashboard/vendor" element = {<VendorDashboard/>}/>
+         <Route path = "/Dashboard/user" element = {<UserDashboard/>}/>
         </>
     )
 ) 
