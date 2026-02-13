@@ -27,7 +27,7 @@ export default function LoginForm() {
     ShowToast(res.data?.message || "Login successful", {
       type: "success",
       onClose: () => {
-        navigate("/"); // redirect to homepage or dashboard
+        navigate("/Dashboard/Vendor"); // redirect to homepage or dashboard
       },
     });
   };
