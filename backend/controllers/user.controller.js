@@ -62,3 +62,54 @@ export const registerUser = asyncHandler(async (req, res) => {
     data: createdUser,
   });
 });
+
+export const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  
+  if (!email || !password) {
+    throw new ApiError(400, "Email and password are required");
+  }
+
+  //  Check if user exists
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    throw new ApiError(404, "User does not exist");
+  }
+
+  // Compare password
+  const isPasswordValid = await user.comparePassword(password);
+
+  if (!isPasswordValid) {
+    throw new ApiError(401, "Invalid credentials");
+  }
+
+  // Generate tokens
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+
+  // ave refresh token in DB
+  user.refreshToken = refreshToken;
+  await user.save({ validateBeforeSave: false });
+
+  // Cookie options
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  };
+
+  // 7️⃣ Send cookies
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, {
+      ...options
+    })
+    .cookie("refreshToken", refreshToken, {
+      ...options
+    })
+    .json({
+      success: true,
+      message: "User logged in successfully",
+    });
+});
