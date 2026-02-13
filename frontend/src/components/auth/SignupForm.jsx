@@ -187,6 +187,13 @@ export default function SignupForm() {
           </button>
         </form>
       </div>
+      <abbr
+        onClick={()=>{
+          navigate('/Login')
+        }}
+      >
+        already have an account go to signup
+      </abbr>
     </div>
   );
 }

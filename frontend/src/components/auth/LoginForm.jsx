@@ -71,6 +71,13 @@ export default function LoginForm() {
           </button>
         </form>
       </div>
+      <a
+        onClick={()=>{
+          navigate('/Signup')
+        }}
+      >
+        don't have an account? go to signup
+      </a>
     </div>
   );
 }
