@@ -2,7 +2,7 @@ import axios from "axios";
 
 const registerUser = async function (data) {
   try {
-    const res = await axios.post(`/api/user/register`, data, {
+    const res = await axios.post(`https://streetsync.onrender.com/api/v1/user/register`, data, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     console.log(res)
@@ -22,7 +22,7 @@ const registerUser = async function (data) {
 
 const loginUser = async function (data) {
   try {
-    const res = await axios.post(`/api/user/login`, data, {
+    const res = await axios.post(`https://streetsync.onrender.com/api/v1/user/login`, data, {
       // using axios here and not api since have to use vite's proxy here, else the cookie is not being set in the browser
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
@@ -43,7 +43,7 @@ const loginUser = async function (data) {
 
 const searchForVendors = async function () {
   try {
-    const res = await axios.get(`/api/user/searchVendors`, {
+    const res = await axios.get(`https://streetsync.onrender.com/api/v1/user/searchVendors`, {
       withCredentials: true, // required for cookie auth
     });
 
