@@ -1,12 +1,14 @@
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom"
 import {ToastContainer} from "react-toastify"
-import { Home } from "./pages"
+import { Home, Login, Signup } from "./pages"
 
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-         <Route path="/" element={<Home/>}></Route>
+         <Route path="/" element={<Home/>}/>
+         <Route path = "/Signup" element={<Signup/>}/>
+         <Route path = "/Login" element = {<Login/>}/>
         </>
     )
 ) 
